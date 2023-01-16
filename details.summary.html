@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        code {
+            background-color: #f1f1f1;
+            color: blue
+        }
+    </style>
+</head>
+<body>
+    <meter max="100" min="0" value="50"> </meter>
+    <progress id="progress" max="100" min="0" value="0"></progress>
+    <script>
+        var progress = document.getElementById('progress');
+        const interval= setInterval(()=> {
+            progress.value+=10;
+            if (progress.value>=100) {
+                alert('Carregamento realizado com sucesso')
+            clearInterval(interval);
+            }
+        },1000);
+        
+    </script>
+<br>
+
+<input type="text" id="busca"><br>
+<p id="descricao">O da Câmara , Arthur Lira (PP-AL),
+     entregou nesta segunda-feira (16) ao procurador-geral da República, 
+    Augusto Aras, uma notícia-crime com informações a respeito da </p>
+    <script>
+        var searchfield = document.getElementById('busca');
+        var descriptionObject = document.getElementById('descricao');
+        var textToSearch = descriptionObject.innerHTML;
+
+        function realizaBusca(busca) {
+            const regex = new RegExp('( ${busca})(?!(.(?!<mark))*</mark>)+', 'ig');
+            const ocurrences = textToSearch.match(regex);
+            descriptionObject.innerHTML = textToSearch.replace(regex,'<mark>${busca}</mark>')
+        }
+        searchfield.addEventListener('keyup'(e)=> realizaBusca(e.target.value));
+    </script>
+
+</body>
+</html>
